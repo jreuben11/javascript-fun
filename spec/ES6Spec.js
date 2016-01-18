@@ -11,4 +11,37 @@ describe("Arrows suite", function() {
     expect(JSON.stringify(pairs)).toBe(JSON.stringify([{"even":0,"odd":1},{"even":2,"odd":3},{"even":4,"odd":5},{"even":6,"odd":7},{"even":8,"odd":9},{"even":10,"odd":11}]));
   });
 
+  it("statement bodies", function(){
+    var nums = [1,2,3,4,5,6,7,8,9,10];
+    var fives = [];
+    nums.forEach(v => {
+      if (v % 5 === 0)
+        fives.push(v);
+    });
+    expect(JSON.stringify(fives)).toBe(JSON.stringify([5,10]));
+  });
+});
+
+describe("ES5", function() {
+  it("truthy", function() {
+    var zero = "0";
+    var naught = 0;
+    expect(zero == naught).toBe(true);
+    expect(zero === naught).toBe(false);
+  });
+
+  it("this", function() {
+    function foo(something) {
+      this.a = something;
+    }
+    foo(1);
+    expect(a).toBe(1);
+    var obj1 = {};
+    var bar = foo.bind( obj1 );
+    bar( 2 );
+    expect( obj1.a).toBe(2);
+    var baz = new bar(3);
+    expect( obj1.a ).toBe(2);
+    expect( baz.a ).toBe(3);
+  });
 });
