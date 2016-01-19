@@ -110,7 +110,7 @@ class Polygon {
   }
 
   get area() {
-    return this.calcArea()
+    return this.calcArea();
   }
 
   calcArea() {

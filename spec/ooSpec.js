@@ -1,4 +1,5 @@
 describe("OO suite", function() {
+ 'use strict';
 
   it("test prototype", function() {
     var x = new Shape(1,2);
@@ -20,8 +21,17 @@ describe("OO suite", function() {
   });
 
   xit("test ES6 class", function() {
-    var x = new Polygon(2.3);
-    var y = x.calcArea();
-    expect(y).toBe(6);
+    var p = new Polygon(2.3);
+    var area = p.calcArea();
+    expect(area).toBe(6);
+  });
+
+  it("test ES5 object getter/setter", function() {
+    var myObject = {
+      get a() { return this._a_; },
+      set a(val) {this._a_ = val * 2; }
+    };
+    myObject.a = 2;
+    expect(myObject.a).toBe(4);
   });
 });
